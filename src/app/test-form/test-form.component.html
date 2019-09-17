@@ -1,0 +1,30 @@
+<form class="example-form" (ngSubmit)="onSubmit()" [formGroup]="formTest">
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Firstname" formControlName="firstName">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Lastname" formControlName="lastName">
+    </mat-form-field>
+
+    <label>Has phone number?</label><br>
+    <mat-radio-group formControlName="hasPhone">
+        <mat-radio-button [value]="false">No</mat-radio-button>&nbsp;&nbsp;
+        <mat-radio-button [value]="true">Yes</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field class="example-full-width" *ngIf="formTest.controls.hasPhone.value">
+        <input matInput placeholder="Phone number" formControlName="phoneNumber">
+    </mat-form-field>
+          
+    <br><br>
+    <button mat-button color="primary" type="submit" [disabled]="formTest.invalid">Save</button>
+   
+
+</form>
+
+<br>
+<p>{{ formTest.value | json }}</p>
+<br>
+<p>{{ formTest.status }}</p>
